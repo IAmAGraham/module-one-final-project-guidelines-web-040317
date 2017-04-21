@@ -3,8 +3,25 @@ require "pry"
 class ModelRunner
 
   def asks_for_borough
+    puts "**********************************************".blue
+    puts "***********************************************".blue
+    puts "************************************************".blue
+    puts "*************************************************".blue
+    puts "**************************************************".blue
+    puts "***************************************************".blue
+    puts "****************************************************".blue
+    puts "*****************************************************".blue
+    puts "******************************************************".blue
+    puts "*******************************************************".blue
+    puts "*********************************************************".blue
+    puts ""
     puts "Hello! Welcome to a very, very LEAN MTA App."
-    puts "What borough are traveling from?"
+    puts ""
+    puts "*********************************************************".blue
+    puts ""
+    puts "What borough are traveling from? Brooklyn, Queens, Bronx or Manhattan?"
+    puts ""
+    puts "*********************************************************".blue
   end
 
   def gets_borough
@@ -13,7 +30,12 @@ class ModelRunner
 
   def shows_stations_in_borough
     found_borough = Borough.find_by(borough_name: @borough)
-    puts "Here are all the stations in #{found_borough.borough_name}"
+    puts ""
+    puts "*********************************************************".green
+    puts ""
+    puts "Here are all the stations in #{found_borough.borough_name}:"
+    puts "*********************************************************".green
+    puts ""
     puts found_borough.borough_name
     found_borough.stations.each do |station|
       puts station.station_name
@@ -21,11 +43,12 @@ class ModelRunner
   end
 
   def asks_for_station
+    puts "*********************************************************".red
     puts "Select your station from the above options"
   end
 
   def gets_station
-    @station = gets.chomp.capitalize
+    @station = gets.chomp.casecamp
   end
 
   def shows_lines
