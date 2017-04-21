@@ -3,52 +3,79 @@ require "pry"
 class ModelRunner
 
   def asks_for_borough
-    puts "**********************************************".blue
-    puts "***********************************************".blue
-    puts "************************************************".blue
-    puts "*************************************************".blue
-    puts "**************************************************".blue
-    puts "***************************************************".blue
-    puts "****************************************************".blue
-    puts "*****************************************************".blue
-    puts "******************************************************".blue
-    puts "*******************************************************".blue
-    puts "*********************************************************".blue
-    puts ""
-    puts "Hello! Welcome to a very, very LEAN MTA App."
-    puts ""
-    puts "*********************************************************".blue
+  puts "*********************************************************".blue
+  puts "*********************************************************".blue
+  puts "*********************************************************".blue
+  puts "*********************************************************".blue
+  puts "*********************************************************".blue
+  puts "Hello! Welcome to a very, very LEAN MTA App!".white
+  puts "*********************************************************".blue
+  puts "*********************************************************".blue
+  puts "*********************************************************".blue
+  puts "*********************************************************".blue
+  puts "*********************************************************".blue
+  puts ""
+  puts ""
+  puts ""
+  puts "*********************************************************".blue
+end
+
+    def gets_borough
     puts ""
     puts "What borough are traveling from? Brooklyn, Queens, Bronx or Manhattan?"
     puts ""
     puts "*********************************************************".blue
-  end
 
-  def gets_borough
     @borough = gets.chomp.capitalize
   end
 
-  def shows_stations_in_borough
+  def iterate_boroughs
     found_borough = Borough.find_by(borough_name: @borough)
-    puts ""
-    puts "*********************************************************".green
-    puts ""
-    puts "Here are all the stations in #{found_borough.borough_name}:"
-    puts "*********************************************************".green
-    puts ""
-    puts found_borough.borough_name
+  end
+
+
+  def shows_stations_in_borough
+    #if gets.chomp borough search = borough in db
+    if iterate_boroughs
+    # found_borough = Borough.find_by(borough_name: @borough)
+    #  found_borough == @borough
+      # puts ""
+      # puts "*********************************************************".green
+      # puts ""
+
+      # puts ""
+      # puts ""
+      #then put the found_borough but just the name of the borough
+      # puts found_borough.borough_name
+      # found_borough.stations.each do |station|
+      #   puts station.station_name
+
+    else
+      iterate_boroughs != @borough
+        puts "Please try searching again"
+        gets_borough
+        # shows_stations_in_borough
+      end
+      # found_borough == @borough
+
+  end
+
+  def gives_station_name(station)
     found_borough.stations.each do |station|
       puts station.station_name
     end
   end
 
+
   def asks_for_station
+    gives_station_options
+    # puts "Here are all the stations in #{itereate_boroughs.borough_name}:"
     puts "*********************************************************".red
     puts "Select your station from the above options"
   end
 
   def gets_station
-    @station = gets.chomp.casecamp
+    @station = gets.chomp
   end
 
   def shows_lines
@@ -63,7 +90,9 @@ class ModelRunner
   def run
     asks_for_borough
     gets_borough
+    # itereate_boroughs
     shows_stations_in_borough
+    gives_station_name
     asks_for_station
     gets_station
     shows_lines
