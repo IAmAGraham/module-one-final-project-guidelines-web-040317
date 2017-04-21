@@ -5,8 +5,18 @@ class ModelRunner
   attr_accessor :station_name
 
   def asks_for_borough
-    puts "Hello! Welcome to a very, very LEAN MTA App."
+    puts "********************************************".white.on_light_blue.blink
+    puts "********************************************".white.on_blue.blink
+    puts "********************************************".white.on_light_blue.blink
+    puts ""
+    puts "Hello! Welcome to the VERY, VERY, FLASHY LEAN MTA App."
+    puts ""
+    puts "********************************************".white.on_light_blue.blink
+    puts "********************************************".white.on_blue.blink
+    puts "********************************************".white.on_light_blue.blink
+    puts ""
     puts "What borough are traveling from?"
+    puts ""
   end
 
   def gets_borough
@@ -16,11 +26,15 @@ class ModelRunner
   def shows_stations_in_borough
     @found_borough = Borough.find_by(borough_name: @borough) #found_borough = object id, and all the junk but searches by the name
     if @found_borough == nil
+      puts ""
       puts "Sorry, let's do this all over again"
+      puts ""
       gets_borough
       shows_stations_in_borough
     else
+    puts ""
     puts "Here are all the stations in #{@found_borough.borough_name}" #returns statement with borough name
+    puts ""
     puts @found_borough.borough_name
     @found_borough.stations.each do |station|
     puts station.station_name
@@ -40,7 +54,9 @@ end
   # end
 
   def asks_for_station
+    puts ""
     puts "Select your station from the above options"
+    puts ""
   end
 
   def gets_station
@@ -50,11 +66,15 @@ end
   def shows_lines
     @found_station = Station.find_by(station_name: @station)
     if @found_station == nil
+      puts ""
       puts "Ehhh, something went wrong. Try again."
+      puts ""
       gets_station
       shows_lines
     else
+    puts ""
     puts "Here are all the trains in #{@found_station.station_name}"
+    puts ""
     puts @found_station.station_name
     @found_station.lines.each do |line|
       puts line.line_name
@@ -63,12 +83,17 @@ end
   end
 
   def run_again
+    puts ""
     puts "Would you like to run another query (Y/N)?"
+    puts ""
     @answer = gets.chomp
     if @answer == "#{'Y'}"
       run
     else
+      puts "********************************************"
+      puts ""
       puts "Fine. Bye."
+      puts ""
     end
   end
 

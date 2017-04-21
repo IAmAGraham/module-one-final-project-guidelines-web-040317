@@ -6,6 +6,8 @@ require 'pry'
 require 'csv'
 require 'sqlite3'
 require 'require_all'
+require 'colorize'
+
 
 # require_relative '../app/models/station.rb'
 # require_relative '../app/models/train.rb'
