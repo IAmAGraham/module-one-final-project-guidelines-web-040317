@@ -14,13 +14,30 @@ class ModelRunner
   end
 
   def shows_stations_in_borough
-    found_borough = Borough.find_by(borough_name: @borough)
-    puts "Here are all the stations in #{found_borough.borough_name}"
-    puts found_borough.borough_name
-    found_borough.stations.each do |station|
-      puts station.station_name
-    end
+    @found_borough = Borough.find_by(borough_name: @borough) #found_borough = object id, and all the junk but searches by the name
+    if @found_borough == nil
+      puts "Sorry, let's do this all over again"
+      gets_borough
+      shows_stations_in_borough
+    else
+    puts "Here are all the stations in #{@found_borough.borough_name}" #returns statement with borough name
+    puts @found_borough.borough_name
+    @found_borough.stations.each do |station|
+    puts station.station_name
+   end
   end
+end
+
+  # def lets_get_those_stations
+  #
+  #     if station.station_name == nil
+  #       puts "Try again!"
+  #       shows_stations_in_borough
+  #     else
+  #      #iterates and returns the stations in that specific  borough
+  #   end
+  #   end
+  # end
 
   def asks_for_station
     puts "Select your station from the above options"
@@ -31,11 +48,17 @@ class ModelRunner
   end
 
   def shows_lines
-    found_station = Station.find_by(station_name: @station)
-    puts "Here are all the trains in #{found_station.station_name}"
-    puts found_station.station_name
-    found_station.lines.each do |line|
+    @found_station = Station.find_by(station_name: @station)
+    if @found_station == nil
+      puts "Ehhh, something went wrong. Try again."
+      gets_station
+      shows_lines
+    else
+    puts "Here are all the trains in #{@found_station.station_name}"
+    puts @found_station.station_name
+    @found_station.lines.each do |line|
       puts line.line_name
+    end
     end
   end
 
@@ -54,17 +77,12 @@ class ModelRunner
     asks_for_borough
     gets_borough
     shows_stations_in_borough
+    # lets_get_those_stations
     asks_for_station
     gets_station
     shows_lines
     run_again
   end
-
-
-
-
-
-
   end
 
 
